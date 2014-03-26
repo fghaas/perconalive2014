@@ -2,22 +2,6 @@
 
 set -ex
 
-DISK=sdb
-
-# Create a partition and a filesystem for the /opt/stack mount point
-# (and add it to the fstab)
-if ! grep '/opt/stack' /proc/mounts; then
-  if ! [ -b "/dev/${DISK}1" ]; then
-    parted /dev/$DISK mklabel msdos
-    parted /dev/$DISK mkpart primary 512 100%
-    blockdev --rereadpt /dev/${DISK}
-  fi
-  mkfs -t ext4 -L stack /dev/${DISK}1
-  echo -e "/dev/${DISK}1\t/opt/stack\tauto\tdefaults\t0\t0" >> /etc/fstab
-  mkdir -p /opt/stack
-  mount /dev/${DISK}1 /opt/stack
-fi
-
 # Install Squid and enable caching. Redstack, DevStack and diskimage-builder
 # install the same packages again and again, so use hitting the network for
 # all of them

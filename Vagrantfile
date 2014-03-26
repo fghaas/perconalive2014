@@ -5,9 +5,6 @@
 # (2G) is the minimum, set this to higher if you have RAM to spare
 ram = 2048
 
-# A separate disk to use for your /opt/stack mount.
-file_to_disk = 'devstack-data.vdi'
-
 Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -33,13 +30,6 @@ Vagrant.configure("2") do |config|
   config.vm.provider :virtualbox do |vb|
     # Boot with a GUI so you can see the screen. (Default is headless)
     vb.gui = true
-
-    # Create the 16G storage drive
-    unless File.exist?(file_to_disk)
-      vb.customize ['createhd', '--filename', file_to_disk, '--size', 16 * 1024]
-    end
-    # Attach it to the VM
-    vb.customize ['storageattach', :id, '--storagectl', 'SATAController', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
 
     # Set the amount of memory specified above
     vb.customize ["modifyvm", :id, "--memory", ram]
