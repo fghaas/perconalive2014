@@ -30,17 +30,21 @@ export http_proxy="http://localhost:3128"
 export https_proxy="http://localhost:3128"
 export ftp_proxy="http://localhost:3128"
 export no_proxy="localhost,127.0.0.1"
-tee -a /etc/environment <<EOF
+if ! grep $http_proxy /etc/environment; then
+  tee -a /etc/environment <<EOF
 http_proxy="$http_proxy"
 https_proxy="$https_proxy"
 ftp_proxy="$ftp_proxy"
 no_proxy="$no_proxy"
 EOF
+fi
 
 # Also use the local proxy server for APT
-tee -a /etc/apt/apt.conf.d/50proxy <<EOF
+if ! grep $http_proxy /etc/apt/apt.conf.d/50proxy; then
+  tee -a /etc/apt/apt.conf.d/50proxy <<EOF
 Acquire::http::Proxy "$http_proxy";
 EOF
+fi
 
 # Install git (via the local proxy)
 apt-get -y install git
