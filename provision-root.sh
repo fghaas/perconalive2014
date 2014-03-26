@@ -49,4 +49,11 @@ apt-get -y install git
 # which must run as a regular user.
 sudo -i -u vagrant /vagrant/provision-vagrant.sh
 
+# And finally, enable this horrible hack as per
+# https://wiki.openstack.org/wiki/Trove/dev-env
+# (without which the guestagent can't complete
+# the guest's configuration)
+iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o eth0 -j MASQUERADE
+
+# And we're ready to go.
 echo "Done!"
