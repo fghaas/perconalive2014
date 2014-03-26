@@ -28,6 +28,9 @@ EOF
 # (includes building the Trove-enabled MySQL image with diskimage-builder)
 ./redstack kick-start mysql no-clean
 
+# Make sure we source ~/devstack/openrc on login
+echo ". ~/devstack/openrc " >> ~/.bashrc
+
 # Finally, copy the shell scripts into $HOME (from /vagrant), so
 # they are still present even after the VM is turned into an
 # appliance and is no longer managed by Vagrant.
