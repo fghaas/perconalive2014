@@ -2,6 +2,12 @@
 
 set -ex
 
+PROVFILE=/home/vagrant/.vagrant_provisioned
+if [ -e $PROVFILE ]; then
+  echo "Already provisioned. To re-provision remove $PROVFILE and then do \"vagrant reload\"."
+  exit 0
+fi
+
 # Install Squid and enable caching. Redstack, DevStack and diskimage-builder
 # install the same packages again and again, so use hitting the network for
 # all of them
@@ -42,6 +48,9 @@ sudo -i -u vagrant /vagrant/provision-vagrant.sh
 # (without which the guestagent can't complete
 # the guest's configuration)
 iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o eth0 -j MASQUERADE
+
+# Prevent accidental re-provisioning
+touch $PROVFILE
 
 # And we're ready to go.
 echo "Done!"
