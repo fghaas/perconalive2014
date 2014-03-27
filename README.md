@@ -10,7 +10,7 @@ Florian Haas, hastexo
 To run this tutorial, you'll need:
 
 * a machine running VirtualBox (4.2 or better) and Vagrant (1.2 or better)
-* at least 2048M of RAM (more is better)
+* at least 3G of RAM (more is better)
 * an SSD (otherwise, random I/O is just going to kill your machine)
 
 For initially setting up the virtual machine, you'll also need

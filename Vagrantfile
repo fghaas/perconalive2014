@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 # Set the amount of RAM you want to allocate to the VM. The default
-# (2G) is the minimum, set this to higher if you have RAM to spare
-ram = 2048
+# (3G) is the minimum, set this to higher if you have RAM to spare
+ram = 3072
 
 Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. The most common configuration
