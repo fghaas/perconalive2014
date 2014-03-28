@@ -79,4 +79,6 @@ And when needed, wake it up again with
 
 ## Questions?
 
-Feel free to file an issue in this repo if you need help.
+Feel free to
+[file an issue](https://github.com/fghaas/perconalive2014/issues)
+in this repo if you need help.
