@@ -27,7 +27,7 @@ Clone this repo:
 Edit the `Vagrantfile` to increase the RAM allocation, if you can:
 
     # Set the amount of RAM you want to allocate to the VM. The default
-    # (2G) is the minimum, set this to higher if you have RAM to spare
+    # (3G) is the minimum, set this to higher if you have RAM to spare
     ram = 4096
 
 Then bring up your VM:
